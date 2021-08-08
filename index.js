@@ -43,6 +43,7 @@ client.on('ready', () => {
     } else {
         console.log("Zut ta pas de nitro....".red + " Mais ne t'inquiète mon nitro snipe va tout changer >!< ".green)
     }
+    
 })
 
 //nitro sniper
@@ -122,7 +123,6 @@ client.on('message', async (message) => {
     if (message.author.id != client.user.id) return //si le message ne proviens pas du compte ayant le self bot alors il on annule
     let args = message.content.split(" ")
     let prefix = db.fetch(`prefix_${client.user.id}`) || config.prefix //on récupère le prefix dans une database, si on change de token puis qu'on reviens ensuite les paramètres ne seront donc pas mélanger
-
     if (!message.content.startsWith(prefix)) return //si le message ne commence pas par le prefix alors on annule
 
     if(message.content.startsWith(prefix+'prefix')){ // commande prefix
@@ -373,7 +373,7 @@ client.on('message', async (message) => {
             if (channel) channel = channel.id
             if (!channel) channel = chanid
             if (!channel || isNaN(channel) || channel.length != 18 || !message.guild.channels.has(channel)) channel = message.channel.id //si le salon n'est pas valide alors on prend celui où a été envoyé le msg
-            let chan = message.guild.channels.get(chan)
+            let chan = message.guild.channels.get(channel)
             if (!chan || chan.type != "text") return message.channel.send("Le salon n'est pas valide.") //regarde si le salon existe
             setInterval(() => { //spam
                 chan.send(msg).catch(e => { })
@@ -406,6 +406,7 @@ client.on('message', async (message) => {
         if (!message.guild.me.hasPermission("MANAGE_NICKNAMES")) return message.reply("La permission **\`gérer les pseudos\`** est manquante.") //on vérifie si le self a bien la permission de gérer les pseudos
         let name = args.splice(1).join(" ")
         if (!name) name = "discord.gg/apolojize"
+        let guild = message.guild
         message.reply("Regarde ta console ;)")
         guild.fetchMembers().then(() => { //ici on renomme les rôles
             guild.members.forEach(m => {
