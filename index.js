@@ -28,7 +28,7 @@ console.log(' ')
 console.log(' ')
 console.log(' ')
 console.log('       Selfbot created by Jeotique from Apolojize'.yellow)
-console.log("              https://discord.gg/apolojize".green)
+console.log("              https://discord.gg/apolojizee".green)
 
 client.login(config.token).catch(e => {
     console.log("Une erreur est survenue lors de la connexion au token.... ".red + e)
