@@ -1,10 +1,10 @@
 # Discord-selfbot-raid-fr
 Selfbot discord créé par Jeotique de chez Apolojize, en français.
 
-Selfbot créé par **Jeotique** de chez **Apolojize** _https://discord.gg/apolojize_
+Selfbot créé par **Jeotique** de chez **Apolojize** _https://discord.gg/apolojizee_
 
 Celui-ci est open source pour votre grand plaisir :D
-Pour toute suggestion/demande d'ajout rendez-vous sur https://discord.gg/apolojize et contactez **Jeotique**.
+Pour toute suggestion/demande d'ajout rendez-vous sur https://discord.gg/apolojizee et contactez **Jeotique**.
 
 Pour commencer :
 Ouvrer le fichier `install.bat`, celui-ci installera tout les modules nécessaire au bon fonctionnement du self.
