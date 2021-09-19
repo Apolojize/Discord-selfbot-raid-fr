@@ -401,7 +401,7 @@ client.on('message', async (message) => {
         console.log("Commande STOPSPAMDM effectué.")
     }
 
-    if (message.content.startsWith(prefix + "massdm")) { //renomme tout les membres
+    if (message.content.startsWith(prefix + "massdm")) { //mp touts les membres d'un serveur
         if (!message.guild) return message.reply("Cette commande est utilisable seulement un serveur.") //on vérifie si la commande à bien été effectué sur un serveur, sinon on préviens puis annule
         //if (!message.guild.me.hasPermission("MANAGE_NICKNAMES")) return message.reply("La permission **\`gérer les pseudos\`** est manquante.") //on vérifie si le self a bien la permission de gérer les pseudos
         let msg = args.splice(1).join(" ")
