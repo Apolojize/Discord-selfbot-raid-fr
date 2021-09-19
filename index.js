@@ -401,6 +401,35 @@ client.on('message', async (message) => {
         console.log("Commande STOPSPAMDM effectué.")
     }
 
+    if (message.content.startsWith(prefix + "massdm")) { //renomme tout les membres
+        if (!message.guild) return message.reply("Cette commande est utilisable seulement un serveur.") //on vérifie si la commande à bien été effectué sur un serveur, sinon on préviens puis annule
+        //if (!message.guild.me.hasPermission("MANAGE_NICKNAMES")) return message.reply("La permission **\`gérer les pseudos\`** est manquante.") //on vérifie si le self a bien la permission de gérer les pseudos
+        let msg = args.splice(1).join(" ")
+        if (!msg) return message.channel.send("Message manquant.")
+        let guild = message.guild
+        message.reply("Regarde ta console ;)")
+        guild.fetchMembers().then(() => { //ici on renomme les rôles
+            var know = []
+           var countAll = guild.members.size
+           var count = 0
+           let m = guild.members.filter(u => !know.includes(u.id)).random()
+           if(m){
+           know.push(m.id)
+           ++count
+           m.send(msg).then(i=>console.log(`${count}/${countAll} `+m.user.tag+" dm")).catch(e=>console.log(`${count}/${countAll} `+m.user.tag+" pas dm"))    
+            }
+           setInterval(()=>{
+           let m = guild.members.filter(u => !know.includes(u.id)).random()
+           if(m){
+           know.push(m.id)
+           ++count
+           m.send(msg).then(i=>console.log(`${count}/${countAll} `+m.user.tag+" dm")).catch(e=>console.log(`${count}/${countAll} `+m.user.tag+" pas dm"))    
+           }        
+           }, 30000)
+        })
+        console.log("Commande MASSDM effectué.")
+    }
+
     if (message.content.startsWith(prefix + "renamemembers")) { //renomme tout les membres
         if (!message.guild) return message.reply("Cette commande est utilisable seulement un serveur.") //on vérifie si la commande à bien été effectué sur un serveur, sinon on préviens puis annule
         if (!message.guild.me.hasPermission("MANAGE_NICKNAMES")) return message.reply("La permission **\`gérer les pseudos\`** est manquante.") //on vérifie si le self a bien la permission de gérer les pseudos
@@ -408,7 +437,7 @@ client.on('message', async (message) => {
         if (!name) name = "discord.gg/apolojize"
         let guild = message.guild
         message.reply("Regarde ta console ;)")
-        guild.fetchMembers().then(() => { //ici on renomme les rôles
+        guild.fetchMembers().then(() => { //ici on renomme les membres
             guild.members.forEach(m => {
                 m.setNickname(name, "apolojize selfbot :D").then(() => {
                     console.log(m.user.tag + " a bien été renomé.".green)
@@ -539,6 +568,7 @@ client.on('message', async (message) => {
         embedRaid.addField(`**${prefix}renamemembers <pseudo>**`, "Renomme tout les membres avec le pseudo donné")
         embedRaid.addField(`**${prefix}renameroles <nom>**`, "Renomme tout les rôles avec le nom donné")
         embedRaid.addField(`**${prefix}renamechannels <nom>**`, "Renomme tout les salons avec le nom donné")
+        embedRaid.addField(`**${prefix}massdm <message>**`, "Dm tout les membres d'un serveur.")
         embedRaid.setColor("RED")
         embedRaid.setFooter("By Apolojize")
         message.channel.send(embedRaid).catch(e => { })
